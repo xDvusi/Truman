@@ -40,7 +40,11 @@ async def on_ready():
     await client.tree.sync()
     logging.info(f"{client.user} has connected to Discord!")
     client.loop.create_task(check_auctions())
-
+    
+@client.tree.command(name="help", description="Learn how to interact with Truman Auctions")
+async def Help(interaction: discord.Interaction) -> None:
+    await interaction.response.defer()
+    await interaction.followup.send(embed=embeds.help())
 
 def load_auctions():
     if not os.path.exists("auctions.json"):

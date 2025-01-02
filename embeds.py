@@ -3,6 +3,22 @@ import discord
 color = 0x000000
 warnEmoji = "<:crimWarn:1142111019771105451>"
 
+def help() -> discord.Embed:
+    """`/help` embed
+
+    Args:
+    Returns:
+        discord.Embed: An embed
+    """
+    embed = discord.Embed(title="Commands", color=color)
+    descriptions = {"**/Create**":"Use this command to create an auction.", "**/Bid**":"Use this command in an active auction channel to put in an offer."}
+    for key, value in descriptions.items():
+        embed.add_field(
+            name=key, value=value, inline=False
+        )
+
+    return embed
+
 
 def create(item: str, auction_id: int) -> discord.Embed:
     embed = discord.Embed(title=f"Created Auction!", color=color)
