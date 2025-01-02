@@ -9,6 +9,7 @@ import asyncio
 import logging
 import colorlog
 import embeds
+import admin
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -205,6 +206,8 @@ async def bid(interaction: discord.Interaction, bid_amount: int) -> None:
 async def save_auctions(auctions_data):
     with open("auctions.json", "w") as file:
         json.dump(auctions_data, file, indent=4)
+        
+client.tree.add_command(admin.adminCommands(client=client))
 
 
 async def shutdown():

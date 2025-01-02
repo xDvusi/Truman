@@ -1,0 +1,16 @@
+What is the Truman Group?
+<->
+The Truman Group is a joint partnership between **Greyhames**, **Paragon** and **Crimson Bank**. Our plan is to provide Stoneworks with services to help grow the global economy. Starting with filling the void of a centralized auction house. 
+<=>
+How Does making an auction work?
+<->
+We got a robot to do most of the work, all you need to do is head over to <#1324250705472524349> and use the **/create** command. You'll need to decide the item or asset you wish to sell, the duration of the auction and the starting price. From there the bot will create a channel users can bid for the product. It is suggested that you provide some details in that channel if need. 
+<=>
+How Does bidding on an auction work?
+<->
+When you see an auction you would like to bid on, all you need to do is head to that channel and use the **/bid** command, just make sure to bid atleast 1k higher than the previous bid.  
+<=>
+What happens if I don't follow through with the product or my winning bid?
+<->
+Obviously at that point, we'd have to blacklist you. Not only a blacklist from Truman, your **Stoneworks Credit Score** will be impacted. This credit rating is made available to the public by Crimson Bank.
+

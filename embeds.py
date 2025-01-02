@@ -1,6 +1,7 @@
 import discord
 
 color = 0x000000
+warnEmoji = "<:crimWarn:1142111019771105451>"
 
 
 def create(item: str, auction_id: int) -> discord.Embed:
@@ -57,3 +58,46 @@ def auction_win(winner_id, item, highest_bid, end_time) -> discord.Embed:
     embed.add_field(name="Auction Ended", value=f"<t:{end_time}:f>", inline=False)
 
     return embed
+
+def info_embeds(info) -> discord.Embed:
+    embeds = []
+    for block in info:
+        local_embed = discord.Embed(title=block[0], color=color)
+        local_embed.add_field(
+            name=" ",
+            value=block[1],
+            inline=False,
+        )
+        embeds.append(local_embed)
+
+    return embeds
+
+def error(message: str) -> discord.Embed:
+    """A general purpose error embed
+
+    Args:
+        message (str): The error message
+
+    Returns:
+        discord.Embed: An embed
+    """
+    return discord.Embed(
+        title=f"{warnEmoji} There occurred an error while executing the command {warnEmoji}",
+        description=message,
+        color=color,
+    )
+
+def success(message: str) -> discord.Embed:
+    """A general purpose success embed
+
+    Args:
+        message (str): The success message
+
+    Returns:
+        discord.Embed: An embed
+    """
+    return discord.Embed(
+        title=":white_check_mark: Success! :white_check_mark:",
+        description=message,
+        color=color,
+    )
