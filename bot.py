@@ -40,11 +40,15 @@ async def on_ready():
     await client.tree.sync()
     logging.info(f"{client.user} has connected to Discord!")
     client.loop.create_task(check_auctions())
-    
-@client.tree.command(name="help", description="Learn how to interact with Truman Auctions")
+
+
+@client.tree.command(
+    name="help", description="Learn how to interact with Truman Auctions"
+)
 async def Help(interaction: discord.Interaction) -> None:
     await interaction.response.defer()
     await interaction.followup.send(embed=embeds.help())
+
 
 def load_auctions():
     if not os.path.exists("auctions.json"):
@@ -118,7 +122,12 @@ async def add_auction(channel_id, item_name, seller_id, start_price, end_time):
 
 async def add_bid(channel_id, user_id, bid_amount):
     for auction in auctions_data["auctions"]:
-        if auction["channel_id"] == channel_id and auction["status"] == "active":
+        if auction["end_time"] <= int(datetime.now().timestamp()):
+            return (
+                None,
+                f"This Auction has ended.",
+            )
+        elif auction["channel_id"] == channel_id and auction["status"] == "active":
             current_highest_bid = (
                 auction["bids"][-1]["amount"]
                 if auction["bids"]
@@ -210,7 +219,8 @@ async def bid(interaction: discord.Interaction, bid_amount: int) -> None:
 async def save_auctions(auctions_data):
     with open("auctions.json", "w") as file:
         json.dump(auctions_data, file, indent=4)
-        
+
+
 client.tree.add_command(admin.adminCommands(client=client))
 
 
